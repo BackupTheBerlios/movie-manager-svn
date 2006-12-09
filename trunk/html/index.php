@@ -34,6 +34,14 @@ $smarty->config_dir = "config";
 // debugging
 $smarty->debugging = FALSE;
 
+// create database
+$db = ADONewConnection("mysql");
+$db->Connect("localhost", "medien", "1597530", "moviemanager");
+// check for error
+if ($db->ErrorNo() != 0) {
+	die("Error.\nCould not connect to database.\n");
+}
+
 // set vars
 $smarty->assign('title', "Movie Manager");
 
