@@ -8,8 +8,10 @@
 		<div>
 			<b>Movie List</b>
 		</div>
-		<div>
-			Test1
-		</div>
+		{foreach key=movie_id item=movie_title from=$movie_list}
+			<div>
+				<a href="index.php?action=show&mid={$movie_id}">{$movie_title}</a>
+			</div>
+		{/foreach}
 	</body>
 </html>

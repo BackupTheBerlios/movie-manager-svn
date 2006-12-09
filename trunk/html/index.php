@@ -34,7 +34,7 @@ $smarty->config_dir = "config";
 // debugging
 $smarty->debugging = FALSE;
 
-// create database
+// connect to database
 $db = ADONewConnection("mysql");
 $db->Connect("localhost", "medien", "1597530", "moviemanager");
 // check for error
@@ -44,6 +44,7 @@ if ($db->ErrorNo() != 0) {
 
 // set vars
 $smarty->assign('title', "Movie Manager");
+$smarty->assign('movie_list', $db->GetAssoc("SELECT id, title FROM movies WHERE enable = 1"));
 
 // compile everything
 $smarty->display('index.tpl');
