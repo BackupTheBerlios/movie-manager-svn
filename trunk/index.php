@@ -22,4 +22,22 @@
 require_once("lib/smarty/Smarty.class.php");
 require_once("lib/adodb/adodb.inc.php");
 
-php?>
+// new template
+$smarty = new Smarty();
+
+// template settings
+$smarty->template_dir = "tmpl";
+$smarty->compile_dir = "tmpl_c";
+$smarty->cache_dir = "cache";
+$smarty->config_dir = "config";
+
+// debugging
+$smarty->debugging = FALSE;
+
+// set vars
+$smarty->assign('title', "Movie Manager");
+
+// compile everything
+$smarty->display('index.tpl');
+
+?>
