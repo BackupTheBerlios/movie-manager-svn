@@ -8,9 +8,9 @@
 		<div>
 			<b>Movie List</b>
 		</div>
-		{foreach key=movie_id item=movie_title from=$movie_list}
+		{foreach item=movie_title from=$movie_list}
 			<div>
-				<a href="index.php?action=show&mid={$movie_id}">{$movie_title}</a>
+				<a href="movie.php?movie={$movie_title}">{$movie_title}</a>
 			</div>
 		{/foreach}
 	</body>

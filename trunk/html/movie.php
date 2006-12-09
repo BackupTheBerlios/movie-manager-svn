@@ -20,7 +20,6 @@
 
 // require some things
 require_once("lib/smarty/Smarty.class.php");
-require_once("lib/adodb/adodb.inc.php");
 
 // new template
 $smarty = new Smarty();
@@ -31,31 +30,10 @@ $smarty->compile_dir = "tmpl_c";
 $smarty->cache_dir = "cache";
 $smarty->config_dir = "config";
 
-// debugging
-$smarty->debugging = FALSE;
-
-// connect to database
-$db = ADONewConnection("mysql");
-$db->Connect("localhost", "medien", "1597530", "moviemanager");
-// check for error
-if ($db->ErrorNo() != 0) {
-	die("Error.\nCould not connect to database.\n");
-}
-
-// get movies
-$files = scandir("movies");
-$movie_list = array();
-foreach($files as $file) {
-	if (strrchr($file, ".") == ".mov" || strrchr($file, ".") == ".mp4" || strrchr($file, ".") == ".3gp") {
-		array_push($movie_list, $file);
-	}
-}
-
 // set vars
-$smarty->assign('title', "Movie Manager");
-$smarty->assign('movie_list', $movie_list);
+$smarty->assign('movie', $_GET['movie']);
 
 // compile everything
-$smarty->display('index.tpl');
+$smarty->display('movie.tpl');
 
 ?>
